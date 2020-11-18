@@ -1,0 +1,14 @@
+.station {
+  background-color: aqua;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.station:active {
+  cursor: grabbing;
+}

@@ -4,12 +4,13 @@ import { AirportContext } from "../../Context/AirportContext";
 import "./SignalRConnection.css";
 
 const SignalRConnection = () => {
-  const { setConnection, connection } = useContext(AirportContext);
+  const { setConnection, connection, setConnected } = useContext(
+    AirportContext
+  );
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const newConncetion = new HubConnectionBuilder()
       .withUrl("http://localhost:52961/FlightsHub")
-      .withAutomaticReconnect()
       .build();
 
     setConnection(newConncetion);
@@ -20,13 +21,18 @@ const SignalRConnection = () => {
       setLoading(true);
       connection
         .start()
-        .then(() => setLoading(false))
+        .then(() => {
+          if (connection.state === "Connected") {
+            setConnected(true);
+            setLoading(false);
+          }
+        })
         .catch((e) => {
           console.log(e);
           setLoading(false);
         });
     }
-  }, [connection]);
+  }, [connection, setConnected, setConnection]);
 
   let content = (
     <div className="loadingio-spinner-pulse-jbq7w5wlc3">

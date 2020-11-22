@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 export const AirportContext = React.createContext({
+  connected: false,
+  setConnected: () => {},
   connection: {},
   setConnection: () => {},
   change: 0,
@@ -10,10 +12,13 @@ export const AirportContext = React.createContext({
 const AirportContextProvider = (props) => {
   const [change, SetChange] = useState(0);
   const [connection, setConnection] = useState(null);
+  const [connected, setConnected] = useState(false);
 
   return (
     <AirportContext.Provider
       value={{
+        connected,
+        setConnected,
         connection,
         setConnection,
         change,

@@ -1,7 +1,16 @@
-img{
-    position: absolute;
-    top:0;
-    left: 0;
-    max-width: 40px;
-    pointer-events: none;
-  }
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 40px;
+  pointer-events: none;
+}
+
+.plane-landing {
+  filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(0deg)
+    saturate(1000%) contrast(0.8);
+}
+.plane-takeoff {
+  filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(50deg)
+    saturate(1000%) contrast(0.8);
+}

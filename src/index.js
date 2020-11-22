@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
@@ -5,6 +6,8 @@ import AirportContextProvider from "./Context/AirportContext";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
+
+Axios.defaults.baseURL = "http://localhost:52961/api/Airport/";
 
 ReactDOM.render(
   <AirportContextProvider>

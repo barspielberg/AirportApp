@@ -17,7 +17,7 @@ const getXYFromTranslate = (translate) => {
   return nums;
 };
 
-const Plane = ({ stationId }) => {
+const Plane = ({ stationId, direction }) => {
   const { change } = useContext(AirportContext);
 
   const StationRef = document.getElementById(stationId);
@@ -28,7 +28,7 @@ const Plane = ({ stationId }) => {
   useEffect(() => {
     if (!imgRef || !StationRef) return;
 
-    imgRef.current.style.transition = "transform 0.5s";
+    imgRef.current.style.transition = "transform 0.3s";
 
     const [x1, y1] = getXYFromTranslate(imgRef.current.style.transform);
     const [x2, y2] = getXYFromTranslate(StationRef.style.transform);
@@ -37,11 +37,11 @@ const Plane = ({ stationId }) => {
 
     setTimeout(() => {
       setTranslate(StationRef?.style.transform);
-    }, 500);
+    }, 200);
 
     setTimeout(() => {
-      imgRef.current.style.transition = "none";
-    }, 1050);
+      if (imgRef.current) imgRef.current.style.transition = "none";
+    }, 600);
   }, [StationRef]);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const Plane = ({ stationId }) => {
 
   return (
     <img
+      className={direction ? "plane-takeoff" : "plane-landing"}
       ref={imgRef}
       alt="plane"
       src="https://img.icons8.com/plasticine/100/000000/airport.png"

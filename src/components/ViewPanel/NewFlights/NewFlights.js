@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 import { connect } from "react-redux";
-import { AirportContext } from "../../../Context/AirportContext";
 import {
   addFutureFlight,
   getUnfulfilledFlightsForControlTower,
@@ -9,9 +8,25 @@ import {
 import Flight from "./Flight/Flight";
 import "./NewFlights.css";
 
-const NewFlights = ({ towerId, getFutureFlights, flights, addFlight }) => {
+// const mockFlights = [];
+// for (let i = 0; i < 30; i++) {
+//   mockFlights.push({
+//     id: i.toString(),
+//     date: new Date(),
+//     direction: 0,
+//     name: "name_namefdfgfdgdfgfdgfdgg",
+//   });
+// }
+
+const NewFlights = ({
+  towerId,
+  getFutureFlights,
+  flights,
+  addFlight,
+  connection,
+  connected,
+}) => {
   const panelRef = useRef();
-  const { connection, connected } = useContext(AirportContext);
 
   const onDragHandler = (event, obj) => {
     localStorage.setItem(
@@ -61,6 +76,11 @@ const NewFlights = ({ towerId, getFutureFlights, flights, addFlight }) => {
               .map((f) => (
                 <Flight key={f.id} {...f} />
               ))}
+            {flights.length <= 0 && (
+              <tr>
+                <td>No future flights...</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -71,6 +91,8 @@ const NewFlights = ({ towerId, getFutureFlights, flights, addFlight }) => {
 const mapStateToProps = (state) => ({
   flights: state.planes.futureFlights,
   towerId: state.controlTowers.selected.id,
+  connection: state.connection.connection,
+  connected: state.connection.connected,
 });
 
 const mapDispatchToProps = (dispatch) => ({

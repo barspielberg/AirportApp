@@ -1,38 +1,18 @@
-import { HubConnectionBuilder } from "@microsoft/signalr";
-import React, { useContext, useEffect, useState } from "react";
-import { AirportContext } from "../../Context/AirportContext";
+import React, {  useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { connectToSIngnalR } from "../../redux/actions/connectionActions";
 import "./SignalRConnection.css";
 
-const SignalRConnection = () => {
-  const { setConnection, connection, setConnected } = useContext(
-    AirportContext
-  );
+const SignalRConnection = ({ connect, connected }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const newConncetion = new HubConnectionBuilder()
-      .withUrl("http://localhost:52961/FlightsHub")
-      .build();
-
-    setConnection(newConncetion);
-  }, [setConnection]);
+    connect();
+    setLoading(true);
+  }, [connect, setLoading]);
 
   useEffect(() => {
-    if (connection) {
-      setLoading(true);
-      connection
-        .start()
-        .then(() => {
-          if (connection.state === "Connected") {
-            setConnected(true);
-            setLoading(false);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          setLoading(false);
-        });
-    }
-  }, [connection, setConnected, setConnection]);
+    if (connected) setLoading(false);
+  }, [connected]);
 
   let content = (
     <div className="loadingio-spinner-pulse-jbq7w5wlc3">
@@ -48,4 +28,11 @@ const SignalRConnection = () => {
   return content;
 };
 
-export default SignalRConnection;
+const mapStateToProps = (state) => ({
+  connected: state.connection.connected,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  connect: () => dispatch(connectToSIngnalR()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SignalRConnection);

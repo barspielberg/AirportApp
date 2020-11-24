@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { getRelationsForControlTower } from "../../../redux/actions/arrowsActions";
 import Arrow from "./Arrow/Arrow";
 
-const Arrows = ({ data, towerId, getArrows }) => {
+const Arrows = ({ data, towerId, getArrows, stations }) => {
   useEffect(() => {
-    if (towerId) getArrows(towerId);
-  }, [towerId, getArrows]);
-  
+    if (towerId && stations.length > 0) getArrows(towerId);
+  }, [towerId, getArrows, stations]);
+
   return data.map((a) => (
     <Arrow
       key={a.fromId + "_" + a.toId}
@@ -21,6 +21,7 @@ const Arrows = ({ data, towerId, getArrows }) => {
 const mapStateToProps = (state) => ({
   data: state.arrows,
   towerId: state.controlTowers.selected.id,
+  stations: state.stations,
 });
 
 const mapDispatchToProps = (dispatch) => ({

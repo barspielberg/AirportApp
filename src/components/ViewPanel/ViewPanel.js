@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Arrows from "./Arrows/Arrows";
+import Clock from "./Clock/Clock";
 import ControlTowers from "./ControlTowers/ControlTowers";
 import NewFlights from "./NewFlights/NewFlights";
 import Planes from "./Planes/Planes";
@@ -10,11 +11,12 @@ import "./ViewPanel.css";
 const ViewPanel = ({ towerId }) => {
   return (
     <div className="view-panel" id={towerId}>
+      <Clock/>
       <Arrows />
       <Stations />
       <Planes />
       <ControlTowers />
-      <NewFlights towerId={towerId} />
+      <NewFlights />
     </div>
   );
 };

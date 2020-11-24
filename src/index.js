@@ -1,20 +1,28 @@
 import Axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
 import App from "./components/App";
 import AirportContextProvider from "./Context/AirportContext";
 import "./index.css";
+import mainReducer from "./redux/reducers/mainReducer";
 
 import reportWebVitals from "./reportWebVitals";
 
 Axios.defaults.baseURL = "http://localhost:52961/api/Airport/";
 
+const store = createStore(mainReducer, applyMiddleware(thunk));
+
 ReactDOM.render(
-  <AirportContextProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </AirportContextProvider>,
+  <Provider store={store}>
+    <AirportContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AirportContextProvider>
+  </Provider>,
   document.getElementById("root")
 );
 

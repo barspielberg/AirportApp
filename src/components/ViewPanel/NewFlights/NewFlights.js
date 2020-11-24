@@ -1,19 +1,16 @@
-import Axios from "axios";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
+import { connect } from "react-redux";
 import { AirportContext } from "../../../Context/AirportContext";
+import {
+  addFutureFlight,
+  getUnfulfilledFlightsForControlTower,
+} from "../../../redux/actions/planesActions";
 import Flight from "./Flight/Flight";
 import "./NewFlights.css";
 
-const NewFlights = ({ towerId }) => {
+const NewFlights = ({ towerId, getFutureFlights, flights, addFlight }) => {
   const panelRef = useRef();
-  const [flights, setFlights] = useState([]);
   const { connection, connected } = useContext(AirportContext);
 
   const onDragHandler = (event, obj) => {
@@ -23,36 +20,15 @@ const NewFlights = ({ towerId }) => {
     );
   };
 
-  const position = JSON.parse(localStorage.getItem("new-flights-panel-location"));
-
-  const addFlight = useCallback(
-    (flight) => {
-      flight.date = new Date(flight.date);
-      setFlights([...flights, flight]);
-    },
-    [flights, setFlights]
-  );
-
-  const removeFlight = useCallback(
-    (flight) => {
-      setFlights(flights.filter((f) => f.id !== flight.id));
-    },
-    [setFlights, flights]
+  const position = JSON.parse(
+    localStorage.getItem("new-flights-panel-location")
   );
 
   useEffect(() => {
     if (towerId) {
-      Axios.get("UnfulfilledFlightsForControlTower/" + towerId)
-        .then((res) => {
-          const mapedFlights = res.data.map((f) => {
-            f.date = new Date(f.date);
-            return f;
-          });
-          setFlights(mapedFlights);
-        })
-        .catch(console.log);
+      getFutureFlights(towerId);
     }
-  }, [setFlights, towerId]);
+  }, [getFutureFlights, towerId]);
 
   useEffect(() => {
     if (connection && connected) {
@@ -63,17 +39,12 @@ const NewFlights = ({ towerId }) => {
     };
   }, [connection, connected, addFlight]);
 
-  useEffect(() => {
-    if (connection && connected) {
-      connection.on("planeSended", removeFlight);
-    }
-    return () => {
-      if (connection) connection.off("planeSended", removeFlight);
-    };
-  }, [connection, connected, removeFlight]);
-
   return (
-    <Draggable nodeRef={panelRef} onDrag={onDragHandler} defaultPosition={position}>
+    <Draggable
+      nodeRef={panelRef}
+      onDrag={onDragHandler}
+      defaultPosition={position}
+    >
       <div ref={panelRef} className="new-flights-view-panel">
         <div className="description">Future flights</div>
         <table className="darkTable">
@@ -97,4 +68,14 @@ const NewFlights = ({ towerId }) => {
   );
 };
 
-export default NewFlights;
+const mapStateToProps = (state) => ({
+  flights: state.planes.futureFlights,
+  towerId: state.controlTowers.selected.id,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFutureFlights: (towerId) =>
+    dispatch(getUnfulfilledFlightsForControlTower(towerId)),
+  addFlight: (flight) => dispatch(addFutureFlight(flight)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(NewFlights);

@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getRelationsForControlTower } from "../../../redux/actions/arrowsActions";
 import Arrow from "./Arrow/Arrow";
 
-const Arrows = ({ data }) => {
+const Arrows = ({ data, towerId, getArrows }) => {
+  useEffect(() => {
+    if (towerId) getArrows(towerId);
+  }, [towerId, getArrows]);
+  
   return data.map((a) => (
     <Arrow
       key={a.fromId + "_" + a.toId}
@@ -12,4 +18,12 @@ const Arrows = ({ data }) => {
   ));
 };
 
-export default Arrows;
+const mapStateToProps = (state) => ({
+  data: state.arrows,
+  towerId: state.controlTowers.selected.id,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getArrows: (towerId) => dispatch(getRelationsForControlTower(towerId)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Arrows);

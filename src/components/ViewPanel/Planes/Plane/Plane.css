@@ -1,11 +1,13 @@
-img {
+.plane {
   position: absolute;
   top: 0;
   left: 0;
-  max-width: 40px;
-  pointer-events: none;
+  transition: transform 0.5s;
 }
-
+.plane img {
+  max-width: 40px;
+  transition: transform 0.2s;
+}
 .plane-landing {
   filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(0deg)
     saturate(1000%) contrast(0.8);
@@ -14,3 +16,22 @@ img {
   filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(50deg)
     saturate(1000%) contrast(0.8);
 }
+
+.plane .tooltip {
+  display: inline-block;
+  position: absolute;
+  top: -1rem;
+  left: 1.5rem;
+  border-radius: 3px;
+  background-color: rgba(77, 77, 77, 0.726);
+  padding-left: 2px;
+  padding-top: 0;
+  padding-right: 2px;
+  padding-bottom: 2px;
+}
+
+.plane .tooltip-text {
+  color: white;
+}
+
+

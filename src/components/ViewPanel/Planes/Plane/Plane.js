@@ -8,6 +8,7 @@ const getAngleDeg = (x1, y1, x2, y2) => {
 };
 
 const getXYFromTranslate = (translate) => {
+  if (!translate) return [0, 0];
   const nums = translate
     .split("(")[1]
     .split(")")[0]
@@ -17,45 +18,47 @@ const getXYFromTranslate = (translate) => {
   return nums;
 };
 
-const Plane = ({ stationId, direction }) => {
+const Plane = ({ stationId, direction, name }) => {
   const { change } = useContext(AirportContext);
 
   const StationRef = document.getElementById(stationId);
   const [translate, setTranslate] = useState("translate(0px, 0px)");
   const [rotateZ, setrotateZ] = useState("rotateZ(0)");
-  const imgRef = useRef();
+  const [tooltip, setTooltip] = useState(false);
+  const planeRef = useRef();
 
   useEffect(() => {
-    if (!imgRef || !StationRef) return;
-
-    imgRef.current.style.transition = "transform 0.3s";
-
-    const [x1, y1] = getXYFromTranslate(imgRef.current.style.transform);
+    if (!planeRef || !StationRef) return;
+    const [x1, y1] = getXYFromTranslate(planeRef.current.style.transform);
     const [x2, y2] = getXYFromTranslate(StationRef.style.transform);
     const angleDeg = getAngleDeg(x1, y1, x2, y2);
     setrotateZ(`rotateZ(${angleDeg - 135}deg)`);
-
-    setTimeout(() => {
-      setTranslate(StationRef?.style.transform);
-    }, 200);
-
-    setTimeout(() => {
-      if (imgRef.current) imgRef.current.style.transition = "none";
-    }, 600);
   }, [StationRef]);
 
   useEffect(() => {
     setTranslate(StationRef?.style.transform);
-  }, [change]);
+  }, [change, StationRef]);
 
   return (
-    <img
-      className={direction ? "plane-takeoff" : "plane-landing"}
-      ref={imgRef}
-      alt="plane"
-      src="https://img.icons8.com/plasticine/100/000000/airport.png"
-      style={{ transform: translate + rotateZ }}
-    />
+    <div
+      className="plane"
+      style={{ transform: translate }}
+      ref={planeRef}
+      onMouseEnter={() => setTooltip(true)}
+      onMouseLeave={() => setTooltip(false)}
+    >
+      <img
+        className={direction ? "plane-takeoff" : "plane-landing"}
+        alt="plane"
+        src="https://img.icons8.com/plasticine/100/000000/airport.png"
+        style={{ transform: rotateZ }}
+      />
+      {tooltip && (
+        <div className="tooltip">
+          <span className="tooltip-text">{name}</span>
+        </div>
+      )}
+    </div>
   );
 };
 

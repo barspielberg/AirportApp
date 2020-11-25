@@ -8,7 +8,7 @@ const Stations = ({ data, towerId, getStations }) => {
     if (towerId) getStations(towerId);
   }, [towerId, getStations]);
 
-  return data.map((s) => <Station key={s.id} stationId={s.id} name={s.name} />);
+  return data.map((s) => <Station key={s.id} stationId={s.id} name={s.name}/>);
 };
 
 const mapStateToProps = (state) => ({

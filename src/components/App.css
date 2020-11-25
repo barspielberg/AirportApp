@@ -1,0 +1,20 @@
+.nav-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #3696f0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  .nav-btn:hover,
+  .nav-btn:active {
+    color: white;
+    background-color: #3696f0;
+    box-shadow: 2px 2px 3px #5c5c5c85;
+    transform: translate(-2px,-2px);
+  }

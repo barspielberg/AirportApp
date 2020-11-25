@@ -8,7 +8,7 @@ import Planes from "./Planes/Planes";
 import Stations from "./Stations/Stations";
 import "./ViewPanel.css";
 
-const ViewPanel = ({ towerId }) => {
+const ViewPanel = ({ towerId, history }) => {
   return (
     <div className="view-panel" id={towerId}>
       <Clock/>
@@ -17,6 +17,7 @@ const ViewPanel = ({ towerId }) => {
       <Planes />
       <ControlTowers />
       <NewFlights />
+      <button className='nav-btn' onClick={()=>history.push('/edit')}>edit ➧</button>
     </div>
   );
 };

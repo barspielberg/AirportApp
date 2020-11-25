@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getRelationsForControlTower } from "../../../redux/actions/arrowsActions";
 import Arrow from "./Arrow/Arrow";
 
-const Arrows = ({ data, towerId, getArrows, stations }) => {
+const Arrows = ({ data, towerId, getArrows, stations, edit }) => {
   useEffect(() => {
     if (towerId && stations.length > 0) getArrows(towerId);
   }, [towerId, getArrows, stations]);
@@ -14,6 +14,7 @@ const Arrows = ({ data, towerId, getArrows, stations }) => {
       from={a.fromId}
       to={a.toId}
       direction={a.direction}
+      edit={edit}
     />
   ));
 };

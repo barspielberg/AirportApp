@@ -5,6 +5,11 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
   useEffect(() => {
     if (name) setNewName(name);
   }, [name, setNewName]);
+
+  const onClickHandler = () => {
+    onSubmit({ name: newName, id });
+    if (isAddNew) setNewName("");
+  };
   return (
     <div className="edit-control">
       <img
@@ -21,9 +26,13 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <button onClick={()=>onSubmit({name:newName,id})} >{isAddNew ? "Add" : "Change"}</button>
+        <button onClick={onClickHandler}>
+          {isAddNew ? "Add" : "Change"}
+        </button>
         {!isAddNew && (
-          <button className="btn-delete" onClick={onDelete}>Delete this airport ❌</button>
+          <button className="btn-delete" onClick={() => onDelete(id)}>
+            Delete this airport ❌
+          </button>
         )}
       </div>
     </div>

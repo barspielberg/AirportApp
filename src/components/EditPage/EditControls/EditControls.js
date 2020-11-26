@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   AddNewCntrolTower,
+  DeleteCntrolTower,
   UpdateCntrolTower,
 } from "../../../redux/actions/controlTowersActions";
 import EditArrow from "./EditArrow/EditArrow";
@@ -15,18 +16,17 @@ const EditControls = ({
   selectedStation,
   selectedConnection,
   onUpdateControlTower,
-  onAddNewcontrolTower
+  onAddNewcontrolTower,
+  onDeleteControlTower,
 }) => {
   const history = useHistory();
-
-  const onDeleteTower = () => {};
 
   return (
     <div className="edit-controls">
       {selectedTower && (
         <EditTower
           onSubmit={onUpdateControlTower}
-          onDelete={onDeleteTower}
+          onDelete={onDeleteControlTower}
           {...selectedTower}
         />
       )}
@@ -53,5 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UpdateCntrolTower(controlTower)),
   onAddNewcontrolTower: (controlTower) =>
     dispatch(AddNewCntrolTower(controlTower)),
+  onDeleteControlTower: (towerId) => dispatch(DeleteCntrolTower(towerId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(EditControls);

@@ -6,7 +6,7 @@ import {
 } from "../../../redux/actions/controlTowersActions";
 import "./ControlTowers.css";
 
-const ControlTowers = ({ data, getTowers, selcted, onSelect }) => {
+const ControlTowers = ({ data, getTowers, selected, onSelect }) => {
   useEffect(() => {
     getTowers();
   }, [getTowers]);
@@ -15,7 +15,7 @@ const ControlTowers = ({ data, getTowers, selcted, onSelect }) => {
     <select
       className="control-twoer-select"
       onChange={(e) => onSelect(e.target.value)}
-      value={selcted?.id}
+      value={selected?.id}
     >
       {data.map((t) => (
         <option value={t.id} key={t.id}>
@@ -28,7 +28,7 @@ const ControlTowers = ({ data, getTowers, selcted, onSelect }) => {
 
 const mapStateToProps = (state) => ({
   data: state.controlTowers.towers,
-  selcted: state.controlTowers.selcted,
+  selected: state.controlTowers.selected,
 });
 const mapDispatchToProps = (dispatch) => ({
   getTowers: () => dispatch(getControlTowers()),

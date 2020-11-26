@@ -3,6 +3,7 @@ import {
   SELECT_TOWER,
   UPDATE_CONTROL_TOWER_SUCCEEDED,
   ADD_CONTROL_TOWER_SUCCEEDED,
+  DELETE_CONTROL_TOWER_SUCCEEDED,
 } from "../actions/controlTowersActions";
 
 const initialState = { towers: [], selected: {} };
@@ -30,6 +31,15 @@ const controlTowersReducer = (state = initialState, action) => {
       };
     case ADD_CONTROL_TOWER_SUCCEEDED:
       return { ...state, towers: [...state.towers, action.controlTower] };
+    case DELETE_CONTROL_TOWER_SUCCEEDED:
+      return {
+        ...state,
+        towers: state.towers.filter((t) => t.id !== action.towerId),
+        selected:
+          state.selected.id === action.towerId
+            ? state.towers.find((t) => t.id !== action.towerId)
+            : state.selected,
+      };
 
     default:
       return state;

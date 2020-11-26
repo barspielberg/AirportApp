@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-const EditStation = ({ id, name, isAddNew }) => {
+const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
   const [newName, setNewName] = useState(name || "");
   useEffect(() => {
     if (name) setNewName(name);
   }, [name, setNewName]);
+
+  const onClickHandler = () => {
+    onSubmit({ name: newName, id });
+    if (isAddNew) setNewName("");
+  };
+  
   return (
     <div className="edit-control">
       <img
@@ -21,9 +27,9 @@ const EditStation = ({ id, name, isAddNew }) => {
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <button>{isAddNew ? "Add" : "Change"}</button>
+        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button>
         {!isAddNew && (
-          <button className="btn-delete">Delete this station ❌</button>
+          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button>
         )}
       </div>
     </div>

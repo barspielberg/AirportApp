@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const EditTower = ({ isAddNew }) => {
+const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
+  const [newName, setNewName] = useState(name || "");
+  useEffect(() => {
+    if (name) setNewName(name);
+  }, [name, setNewName]);
   return (
     <div className="edit-control">
       <img
@@ -11,10 +15,15 @@ const EditTower = ({ isAddNew }) => {
         {isAddNew ? "Add new airport" : "Edit this control tower"}
       </div>
       <div className="edit-control_content">
-        <input type="text" placeholder="control tower mame" />
-        <button>{isAddNew ? "Add" : "Change"}</button>
+        <input
+          type="text"
+          placeholder="control tower mame"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+        />
+        <button onClick={()=>onSubmit({name:newName,id})} >{isAddNew ? "Add" : "Change"}</button>
         {!isAddNew && (
-          <button className="btn-delete">Delete this airport ❌</button>
+          <button className="btn-delete" onClick={onDelete}>Delete this airport ❌</button>
         )}
       </div>
     </div>

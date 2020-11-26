@@ -13,3 +13,8 @@
 .station:active {
   cursor: grabbing;
 }
+
+.station.station-selected {
+  box-shadow: 0 0 8px 2px #ffffff91;
+  filter: brightness(1.1);
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const EditStation = ({ id, name, isAddNew }) => {
   const [newName, setNewName] = useState(name || "");
   useEffect(() => {
-    setNewName(name || "");
+    if (name) setNewName(name);
   }, [name, setNewName]);
   return (
     <div className="edit-control">

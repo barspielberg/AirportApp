@@ -7,17 +7,27 @@ import NewFlights from "./NewFlights/NewFlights";
 import Planes from "./Planes/Planes";
 import Stations from "./Stations/Stations";
 import "./ViewPanel.css";
+import gridImg from "../../img/grid.jpg";
 
 const ViewPanel = ({ towerId, history }) => {
   return (
-    <div className="view-panel" id={towerId}>
-      <Clock/>
+    <div
+      className="view-panel"
+      id={towerId}
+      style={{
+        background: `url(${gridImg}) no-repeat center`,
+        backgroundSize: "100% 100%",
+      }}
+    >
+      <Clock />
       <Arrows />
       <Stations />
       <Planes />
       <ControlTowers />
       <NewFlights />
-      <button className='nav-btn' onClick={()=>history.push('/edit')}>edit ➧</button>
+      <button className="nav-btn" onClick={() => history.push("/edit")}>
+        edit ➧
+      </button>
     </div>
   );
 };

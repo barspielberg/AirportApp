@@ -5,7 +5,7 @@ import { AirportContext } from "../../../../Context/AirportContext";
 import { selectStation } from "../../../../redux/actions/editActions";
 import "./Station.css";
 
-const Station = ({ stationId, name, onClick }) => {
+const Station = ({ stationId, name, onClick, selectedStation }) => {
   const { onDrag } = useContext(AirportContext);
   const boxRef = useRef();
 
@@ -27,6 +27,11 @@ const Station = ({ stationId, name, onClick }) => {
     };
   }
 
+  let classes = ["station"];
+  if (selectedStation && selectedStation.id === stationId) {
+    classes.push("station-selected");
+  } else classes = ["station"];
+
   return (
     <Draggable
       nodeRef={boxRef}
@@ -36,7 +41,7 @@ const Station = ({ stationId, name, onClick }) => {
     >
       <div
         ref={boxRef}
-        className="station"
+        className={classes.join(" ")}
         id={stationId}
         onClick={onClickHandler}
       >
@@ -45,8 +50,10 @@ const Station = ({ stationId, name, onClick }) => {
     </Draggable>
   );
 };
-
+const mapStateToProps = (state) => ({
+  selectedStation: state.edit.selectedStation,
+});
 const mapDispatchToProps = (dispatch) => ({
   onClick: (station) => dispatch(selectStation(station)),
 });
-export default connect(null, mapDispatchToProps)(Station);
+export default connect(mapStateToProps, mapDispatchToProps)(Station);

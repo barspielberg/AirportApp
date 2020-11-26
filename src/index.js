@@ -2,7 +2,7 @@ import Axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import App from "./components/App";
 import AirportContextProvider from "./Context/AirportContext";
@@ -13,7 +13,15 @@ import reportWebVitals from "./reportWebVitals";
 
 Axios.defaults.baseURL = "http://localhost:52961/api/Airport/";
 
-const store = createStore(mainReducer, applyMiddleware(thunk));
+const composeEnhancers =
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const store = createStore(
+  mainReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <Provider store={store}>

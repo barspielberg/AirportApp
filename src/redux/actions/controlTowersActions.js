@@ -2,6 +2,8 @@ import Axios from "axios";
 
 export const INIT_TOWERS = "INIT_TOWERS";
 export const SELECT_TOWER = "SELECT_TOWER";
+export const UPDATE_CONTROL_TOWER_SUCCEEDED = "UPDATE_CONTROL_TOWER_SUCCEEDED";
+export const ADD_CONTROL_TOWER_SUCCEEDED = "ADD_CONTROL_TOWER_SUCCEEDED";
 
 export const getControlTowers = () => (dispatch) => {
   Axios.get("ControlTowers/")
@@ -9,12 +11,34 @@ export const getControlTowers = () => (dispatch) => {
     .catch(console.log);
 };
 
-export const initControlTowers = (towers) => ({
+export const UpdateCntrolTower = (controlTower) => (dispatch) => {
+  Axios.put("ControlTower/" + controlTower.id, controlTower)
+    .then((res) => dispatch(UpdateCntrolTowerSucceeded(res.data)))
+    .catch(console.log);
+};
+
+export const AddNewCntrolTower = (controlTower) => (dispatch) => {
+  Axios.post("ControlTower/", controlTower)
+    .then((res) => dispatch(AddNewCntrolTowerSucceeded(res.data)))
+    .catch(console.log);
+};
+
+export const selectTower = (towerId) => ({
+  type: SELECT_TOWER,
+  towerId,
+});
+
+const initControlTowers = (towers) => ({
   type: INIT_TOWERS,
   towers,
 });
 
-export const selectTower = (tower) => ({
-  type: SELECT_TOWER,
-  tower,
+const UpdateCntrolTowerSucceeded = (controlTower) => ({
+  type: UPDATE_CONTROL_TOWER_SUCCEEDED,
+  controlTower,
+});
+
+const AddNewCntrolTowerSucceeded = (controlTower) => ({
+  type: ADD_CONTROL_TOWER_SUCCEEDED,
+  controlTower,
 });

@@ -9,7 +9,7 @@ const Flight = ({ date, name, direction }) => {
     let timeout;
     if (new Date() > date) setDatePassed(true);
     else {
-       timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         setDatePassed(true);
       }, date - new Date());
     }
@@ -23,7 +23,7 @@ const Flight = ({ date, name, direction }) => {
       </td>
       <td>{name}</td>
       <td style={{ color: direction ? "#6be270" : "#e91e63" }}>
-        {direction ? "Landing" : "TakeOff"}
+        {direction ? "TakeOff" : "Landing"}
       </td>
     </tr>
   );

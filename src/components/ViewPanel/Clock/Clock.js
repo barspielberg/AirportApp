@@ -9,7 +9,20 @@ const Clock = () => {
     return () => clearInterval(interval);
   }, [setTime]);
 
-  return <div style={{ textAlign: "center" }}>{time.toLocaleTimeString()}</div>;
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        fontWeight: "600",
+        fontSize: "larger",
+        textShadow: "1px 1px 1px black",
+        letterSpacing:"0.5px",
+        color: "white",
+      }}
+    >
+      {time.toLocaleTimeString()}
+    </div>
+  );
 };
 
 export default Clock;

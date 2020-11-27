@@ -35,9 +35,8 @@ const NewFlights = ({
     );
   };
 
-  const position = JSON.parse(
-    localStorage.getItem("new-flights-panel-location")
-  );
+  let position = JSON.parse(localStorage.getItem("new-flights-panel-location"));
+  if (!position) position = { x: 0, y: 0 };
 
   useEffect(() => {
     if (towerId) {

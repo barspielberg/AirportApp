@@ -2,6 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  AddNewArrow,
+  DeleteArrow,
+} from "../../../redux/actions/arrowsActions";
+import {
   AddNewCntrolTower,
   DeleteCntrolTower,
   UpdateCntrolTower,
@@ -26,6 +30,8 @@ const EditControls = ({
   onUpdateStation,
   onAddNewStation,
   onDeleteStation,
+  onAddNewArrow,
+  onDeleteArrow,
 }) => {
   const history = useHistory();
 
@@ -49,11 +55,16 @@ const EditControls = ({
           {...selectedStation}
         />
       )}
-      {selectedConnection && <EditArrow {...selectedConnection} />}
+      {selectedConnection && (
+        <EditArrow
+          onDelete={onDeleteArrow}
+          {...selectedConnection}
+        />
+      )}
       <hr />
       <EditTower onSubmit={onAddNewcontrolTower} isAddNew />
       <EditStation isAddNew onSubmit={onAddNewStationHandler} />
-      <EditArrow isAddNew />
+      <EditArrow isAddNew onSubmit={onAddNewArrow} />
       <button className="nav-btn" onClick={() => history.push("/")}>
         go back to real time airport ➧
       </button>
@@ -75,5 +86,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdateStation: (station) => dispatch(UpdateStation(station)),
   onAddNewStation: (station) => dispatch(AddNewStation(station)),
   onDeleteStation: (stationId) => dispatch(DeleteStation(stationId)),
+
+  onAddNewArrow: (arrow) => dispatch(AddNewArrow(arrow)),
+  onDeleteArrow: (arrow) => dispatch(DeleteArrow(arrow)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(EditControls);

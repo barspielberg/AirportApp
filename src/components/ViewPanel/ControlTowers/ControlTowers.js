@@ -8,8 +8,8 @@ import "./ControlTowers.css";
 
 const ControlTowers = ({ data, getTowers, selected, onSelect }) => {
   useEffect(() => {
-    getTowers();
-  }, [getTowers]);
+    if (data.length <= 0) getTowers();
+  }, [getTowers, data]);
 
   return (
     <select

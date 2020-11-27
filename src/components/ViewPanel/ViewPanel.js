@@ -19,12 +19,12 @@ const ViewPanel = ({ towerId, history }) => {
         backgroundSize: "100% 100%",
       }}
     >
-      <Clock />
       <Arrows />
       <Stations />
       <Planes />
       <ControlTowers />
       <NewFlights />
+      <Clock />
       <button className="nav-btn" onClick={() => history.push("/edit")}>
         edit ➧
       </button>

@@ -10,7 +10,7 @@ const Arrows = ({ data, towerId, getArrows, stations, edit }) => {
 
   return data.map((a) => (
     <Arrow
-      key={a.fromId + "_" + a.toId}
+      key={a.fromId + "_" + a.toId + "_" + a.direction}
       from={a.fromId}
       to={a.toId}
       direction={a.direction}

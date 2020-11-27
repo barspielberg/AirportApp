@@ -13,9 +13,11 @@ const EditArrow = ({
   stations,
   controlTower,
   isAddNew,
+  onSubmit,
+  onDelete,
 }) => {
-  const [newFrom, setNewFrom] = useState(from || stations[0]?.id || "");
-  const [newTo, setNewTo] = useState(to || stations[0]?.id || "");
+  const [newFrom, setNewFrom] = useState(from || "");
+  const [newTo, setNewTo] = useState(to || "");
   const [newDir, setNewDir] = useState(direction || 0);
   const [filter, setFilter] = useState(redFilter);
 
@@ -36,19 +38,25 @@ const EditArrow = ({
     else setFilter(greenFilter);
   }, [newDir, setFilter]);
 
-  return (
-    <div className="edit-control">
-      <img
-        src="https://img.icons8.com/color/48/000000/curly-arrow.png"
-        alt="edit connection"
-        style={{ filter }}
-      />
-      <div className="edit-control_title">
-        {isAddNew ? "Add new connection" : "Edit this connection"}
-      </div>
-      <div className="edit-control_content">
+  const onClickHandler = () => {
+    if (isAddNew) onSubmit({ fromId: newFrom, toId: newTo, direction: newDir });
+  };
+
+  const onDeleteHandler = () => {
+    onDelete({ fromId: from, toId: to, direction });
+  };
+
+  let content = (
+    <button className="btn-delete" onClick={onDeleteHandler}>
+      Delete this connection ❌
+    </button>
+  );
+  if (isAddNew) {
+    content = (
+      <React.Fragment>
         <span>from </span>
         <select onChange={(e) => setNewFrom(e.target.value)} value={newFrom}>
+          <option value="" disabled></option>
           {stations.map((s) => (
             <option key={s.id} value={s.id}>
               {s.name}
@@ -58,6 +66,7 @@ const EditArrow = ({
         </select>
         <span> to </span>
         <select onChange={(e) => setNewTo(e.target.value)} value={newTo}>
+          <option value="" disabled></option>
           {stations.map((s) => (
             <option key={s.id} value={s.id}>
               {s.name}
@@ -70,11 +79,22 @@ const EditArrow = ({
           <option value={0}>landing</option>
           <option value={1}>takeoff</option>
         </select>
-        <button>{isAddNew ? "Add" : "Change"}</button>
-        {!isAddNew && (
-          <button className="btn-delete">Delete this connection ❌</button>
-        )}
+        <button onClick={onClickHandler}>Add</button>
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <div className="edit-control">
+      <img
+        src="https://img.icons8.com/color/48/000000/curly-arrow.png"
+        alt="edit connection"
+        style={{ filter }}
+      />
+      <div className="edit-control_title">
+        {isAddNew ? "Add new connection" : "Delete this connection"}
       </div>
+      <div className="edit-control_content">{content}</div>
     </div>
   );
 };

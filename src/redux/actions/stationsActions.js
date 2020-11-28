@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { clearSlelectedStation } from "./editActions";
 
 export const INIT_STATIONS = "INIT-STATIONS";
 export const UPDATE_STATION_SUCCEEDED = "UPDATE_STATION_SUCCEEDED";
@@ -24,7 +25,10 @@ export const AddNewStation = (station) => (dispatch) => {
 };
 export const DeleteStation = (stationId) => (dispatch) => {
   Axios.delete("station/" + stationId)
-    .then((res) => dispatch(deleteStationSucceeded(res.data)))
+    .then((res) => {
+      dispatch(deleteStationSucceeded(res.data));
+      dispatch(clearSlelectedStation());
+    })
     .catch(console.log);
 };
 

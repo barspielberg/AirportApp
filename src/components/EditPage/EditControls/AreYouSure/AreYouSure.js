@@ -15,11 +15,11 @@ const AreYouSure = ({ type, deleteFunc, close }) => {
       </div>
       {type === "airport" && (
         <div className="disc">
-          All his stations and arrows will also be deleted
+          All its stations and arrows will also be deleted
         </div>
       )}
       {type === "station" && (
-        <div className="disc">All his arrows will also be deleted</div>
+        <div className="disc">All its arrows will also be deleted</div>
       )}
       <div className="btns">
         <button onClick={onDeleteHandelr}>yes</button>

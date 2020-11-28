@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
+const EditTower = ({ name, id, isAddNew, onSubmit, onDelete, onError }) => {
   const [newName, setNewName] = useState(name || "");
   useEffect(() => {
     if (name) setNewName(name);
   }, [name, setNewName]);
 
   const onClickHandler = () => {
-    onSubmit({ name: newName, id });
+    if (newName === "") onError("the name of an airport can't be empty");
+    else onSubmit({ name: newName, id });
     if (isAddNew) setNewName("");
   };
-  //TODO Add validations
   return (
     <div className="edit-control">
       <img
@@ -27,9 +27,7 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <button onClick={onClickHandler}>
-          {isAddNew ? "Add" : "Change"}
-        </button>
+        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button>
         {!isAddNew && (
           <button className="btn-delete" onClick={() => onDelete(id)}>
             Delete this airport ❌

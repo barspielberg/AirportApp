@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
+const EditStation = ({ id, name, isAddNew, onSubmit, onDelete, onError }) => {
   const [newName, setNewName] = useState(name || "");
   useEffect(() => {
     if (name) setNewName(name);
   }, [name, setNewName]);
 
   const onClickHandler = () => {
-    onSubmit({ name: newName, id });
+    if (newName === "") onError("the name of a station can't be empty");
+    else onSubmit({ name: newName, id });
     if (isAddNew) setNewName("");
   };
-  //TODO Add validations
+
+ 
   return (
     <div className="edit-control">
       <img
@@ -27,9 +29,11 @@ const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button> 
+        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button>
         {!isAddNew && (
-          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button> 
+          <button className="btn-delete" onClick={() => onDelete(id)}>
+            Delete this station ❌
+          </button>
         )}
       </div>
     </div>

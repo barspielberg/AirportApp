@@ -17,6 +17,7 @@ import EditArrow from "./EditArrow/EditArrow";
 import "./EditControls.css";
 import EditStation from "./EditStation/EditStation";
 import EditTower from "./EditTower/EditTower";
+import ErrorWindow from "./ErrorWindow/ErrorWindow";
 
 const EditControls = ({
   selectedTower,
@@ -34,6 +35,7 @@ const EditControls = ({
   const history = useHistory();
 
   const [verification, setVerification] = useState(null);
+  const [error, setError] = useState(null);
 
   const onAddNewStationHandler = (station) => {
     station.controlTowerId = selectedTower.id;
@@ -57,6 +59,7 @@ const EditControls = ({
           onDelete={(payload) =>
             deleteHandler("airport", () => onDeleteControlTower(payload))
           }
+          onError={setError}
           {...selectedTower}
         />
       )}
@@ -66,6 +69,7 @@ const EditControls = ({
           onDelete={(payload) =>
             deleteHandler("station", () => onDeleteStation(payload))
           }
+          onError={setError}
           {...selectedStation}
         />
       )}
@@ -78,14 +82,19 @@ const EditControls = ({
         />
       )}
       <hr />
-      <EditTower onSubmit={onAddNewcontrolTower} isAddNew />
-      <EditStation isAddNew onSubmit={onAddNewStationHandler} />
-      <EditArrow isAddNew onSubmit={onAddNewArrow} />
+      <EditTower onSubmit={onAddNewcontrolTower} isAddNew onError={setError} />
+      <EditStation
+        isAddNew
+        onSubmit={onAddNewStationHandler}
+        onError={setError}
+      />
+      <EditArrow isAddNew onSubmit={onAddNewArrow} onError={setError} />
       <button className="nav-btn" onClick={() => history.push("/")}>
         go back to real time airport ➧
       </button>
       {verification}
-    </div>
+      <ErrorWindow message={error} close={() => setError(null)} />
+    </div> 
   );
 };
 

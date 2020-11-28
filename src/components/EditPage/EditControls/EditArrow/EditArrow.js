@@ -11,10 +11,12 @@ const EditArrow = ({
   to,
   direction,
   stations,
+  arrows,
   controlTower,
   isAddNew,
   onSubmit,
   onDelete,
+  onError,
 }) => {
   const [newFrom, setNewFrom] = useState(from || "");
   const [newTo, setNewTo] = useState(to || "");
@@ -39,7 +41,28 @@ const EditArrow = ({
   }, [newDir, setFilter]);
 
   const onClickHandler = () => {
-    if (isAddNew) onSubmit({ fromId: newFrom, toId: newTo, direction: newDir });
+    if (isAddNew) {
+      if (
+        !newFrom ||
+        !newTo ||
+        newFrom === newTo ||
+        arrows.reduce((pre, cur) => {
+          return (
+            pre ||
+            (cur.fromId === newFrom &&
+              cur.toId === newTo &&
+              cur.direction === newDir)
+          );
+        }, false)
+      )
+        onError(
+          `for adding an new arrow you have to:
+          choose start station and end station,
+          those stations can't be the same. also,
+          you can't add an arrow if there is an equal one already`
+        );
+      else onSubmit({ fromId: newFrom, toId: newTo, direction: newDir });
+    }
   };
 
   const onDeleteHandler = () => {
@@ -80,7 +103,7 @@ const EditArrow = ({
           <option value={1}>takeoff</option>
         </select>
         <button onClick={onClickHandler}>Add</button>
-      </React.Fragment>//TODO Add validations
+      </React.Fragment> 
     );
   }
 
@@ -101,6 +124,7 @@ const EditArrow = ({
 
 const mapStateToProps = (state) => ({
   stations: state.stations,
+  arrows: state.arrows,
   controlTower: state.controlTowers.selected,
 });
 export default connect(mapStateToProps)(EditArrow);

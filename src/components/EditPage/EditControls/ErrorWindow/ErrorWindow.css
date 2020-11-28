@@ -1,0 +1,13 @@
+.error-window {
+  position: absolute;
+  border: 1px solid black;
+  top: 200px;
+  left: -300px;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px #81818181;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  color: #585858;
+  font-size: larger;
+  border-radius: 3px;
+}

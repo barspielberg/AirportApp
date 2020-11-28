@@ -8,8 +8,9 @@ import Planes from "./Planes/Planes";
 import Stations from "./Stations/Stations";
 import "./ViewPanel.css";
 import gridImg from "../../img/grid.jpg";
+import StationLogs from "./StationLogs/StationLogs";
 
-const ViewPanel = ({ towerId, history }) => {
+const ViewPanel = ({ towerId, selectedStation, history }) => {
   return (
     <div
       className="view-panel"
@@ -24,6 +25,7 @@ const ViewPanel = ({ towerId, history }) => {
       <Planes />
       <ControlTowers />
       <NewFlights />
+      {selectedStation && <StationLogs selectedStation={selectedStation} />}
       <Clock />
       <button className="nav-btn" onClick={() => history.push("/edit")}>
         edit ➧
@@ -34,6 +36,7 @@ const ViewPanel = ({ towerId, history }) => {
 
 const mapStateToProps = (state) => ({
   towerId: state.controlTowers.selected.id,
+  selectedStation: state.edit.selectedStation,
 });
 
 export default connect(mapStateToProps)(ViewPanel);

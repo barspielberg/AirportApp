@@ -1,4 +1,8 @@
-import { SELECT_CONNECTION, SELECT_STATION } from "../actions/editActions";
+import {
+  CLEAR_SELECTED_STATION,
+  SELECT_CONNECTION,
+  SELECT_STATION,
+} from "../actions/editActions";
 
 const initialState = { selectedStation: null, selectedConnection: null };
 
@@ -16,7 +20,8 @@ const editReducer = (state = initialState, action) => {
         selectedConnection: action.connection,
         selectedStation: null,
       };
-
+    case CLEAR_SELECTED_STATION:
+      return { ...state, selectedStation: null };
     default:
       return state;
   }

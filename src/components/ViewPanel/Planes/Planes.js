@@ -22,22 +22,22 @@ const Planes = ({
   }, [towerId, getPlanes, stations]);
 
   useEffect(() => {
-    if (connection && connected) {
+    if (connection && connected && towerId) {
+      connection.send("JoinGroup", towerId).catch(console.log);
       connection.on("planeSended", addPlane);
     }
     return () => {
-      if (connection) connection.off("planeSended", addPlane);
+      if (connection) {
+        connection.off("planeSended", addPlane);
+        if (towerId)
+          connection.send("LeaveGroup", towerId).catch(console.log);
+      }
     };
-  }, [connection, connected, addPlane]);
+  }, [connection, connected, addPlane, towerId]);
   return (
     <TransitionGroup>
       {data.map((p) => (
-        <CSSTransition
-          key={p.id}
-          classNames="fade"
-          timeout={500}
-
-        >
+        <CSSTransition key={p.id} classNames="fade" timeout={500}>
           <div>
             <Plane
               stationId={p.stationId}

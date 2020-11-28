@@ -6,7 +6,7 @@ import {
   getUnfulfilledFlightsForControlTower,
 } from "../../../redux/actions/planesActions";
 import Flight from "./Flight/Flight";
-import "./NewFlights.css";
+
 
 // const mockFlights = [];
 // for (let i = 0; i < 30; i++) {
@@ -59,7 +59,7 @@ const NewFlights = ({
       onDrag={onDragHandler}
       defaultPosition={position}
     >
-      <div ref={panelRef} className="new-flights-view-panel">
+      <div ref={panelRef} className="log-table-view-panel">
         <div className="description">Future flights</div>
         <table className="darkTable">
           <thead>

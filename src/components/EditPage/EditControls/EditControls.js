@@ -68,7 +68,7 @@ const EditControls = ({
       <button className="nav-btn" onClick={() => history.push("/")}>
         go back to real time airport ➧
       </button>
-    </div>
+    </div> //TODO Add popup "are you sure?" window
   );
 };
 

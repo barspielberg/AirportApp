@@ -49,7 +49,7 @@ const EditArrow = ({
   let content = (
     <button className="btn-delete" onClick={onDeleteHandler}>
       Delete this connection ❌
-    </button>
+    </button>//TODO Add "are you sure?"
   );
   if (isAddNew) {
     content = (
@@ -80,7 +80,7 @@ const EditArrow = ({
           <option value={1}>takeoff</option>
         </select>
         <button onClick={onClickHandler}>Add</button>
-      </React.Fragment>
+      </React.Fragment>//TODO Add validations
     );
   }
 

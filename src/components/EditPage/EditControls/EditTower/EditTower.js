@@ -10,6 +10,7 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
     onSubmit({ name: newName, id });
     if (isAddNew) setNewName("");
   };
+  //TODO Add validations
   return (
     <div className="edit-control">
       <img
@@ -32,7 +33,7 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
         {!isAddNew && (
           <button className="btn-delete" onClick={() => onDelete(id)}>
             Delete this airport ❌
-          </button>
+          </button>//TODO Add "Are you sure?"
         )}
       </div>
     </div>

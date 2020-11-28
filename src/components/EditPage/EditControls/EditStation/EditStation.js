@@ -10,7 +10,7 @@ const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
     onSubmit({ name: newName, id });
     if (isAddNew) setNewName("");
   };
-  
+  //TODO Add validations
   return (
     <div className="edit-control">
       <img
@@ -27,9 +27,9 @@ const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button>
+        <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button> 
         {!isAddNew && (
-          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button>
+          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button> //TODO Add "are you sure?"
         )}
       </div>
     </div>

@@ -29,7 +29,7 @@ const EditStation = ({ id, name, isAddNew ,onSubmit, onDelete}) => {
         />
         <button onClick={onClickHandler}>{isAddNew ? "Add" : "Change"}</button> 
         {!isAddNew && (
-          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button> //TODO Add "are you sure?"
+          <button className="btn-delete" onClick={() => onDelete(id)} >Delete this station ❌</button> 
         )}
       </div>
     </div>

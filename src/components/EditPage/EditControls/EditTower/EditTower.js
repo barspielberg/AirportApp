@@ -33,7 +33,7 @@ const EditTower = ({ name, id, isAddNew, onSubmit, onDelete }) => {
         {!isAddNew && (
           <button className="btn-delete" onClick={() => onDelete(id)}>
             Delete this airport ❌
-          </button>//TODO Add "Are you sure?"
+          </button>
         )}
       </div>
     </div>

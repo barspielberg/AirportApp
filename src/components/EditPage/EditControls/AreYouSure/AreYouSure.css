@@ -1,0 +1,30 @@
+.verification-window {
+  position: absolute;
+  border: 1px solid black;
+  top: 200px;
+  left: -300px;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px #81818181;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  color: #585858;
+  font-size: larger;
+  border-radius: 3px;
+}
+.verification-window .wonder {
+  font-weight: 500;
+}
+.verification-window .question {
+  margin-top: 0.5rem;
+}
+.verification-window .disc{
+    font-size: smaller;
+}
+.verification-window .btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+.verification-window .btns button{
+    font-size: 0.9rem;
+}

@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  AddNewArrow,
-  DeleteArrow,
-} from "../../../redux/actions/arrowsActions";
+import { AddNewArrow, DeleteArrow } from "../../../redux/actions/arrowsActions";
 import {
   AddNewCntrolTower,
   DeleteCntrolTower,
@@ -15,6 +12,7 @@ import {
   DeleteStation,
   UpdateStation,
 } from "../../../redux/actions/stationsActions";
+import AreYouSure from "./AreYouSure/AreYouSure";
 import EditArrow from "./EditArrow/EditArrow";
 import "./EditControls.css";
 import EditStation from "./EditStation/EditStation";
@@ -35,29 +33,47 @@ const EditControls = ({
 }) => {
   const history = useHistory();
 
+  const [verification, setVerification] = useState(null);
+
   const onAddNewStationHandler = (station) => {
     station.controlTowerId = selectedTower.id;
     onAddNewStation(station);
+  };
+
+  const deleteHandler = (type, deleteFunc) => {
+    setVerification(
+      <AreYouSure
+        type={type}
+        deleteFunc={deleteFunc}
+        close={() => setVerification(null)}
+      />
+    );
   };
   return (
     <div className="edit-controls">
       {selectedTower && (
         <EditTower
           onSubmit={onUpdateControlTower}
-          onDelete={onDeleteControlTower}
+          onDelete={(payload) =>
+            deleteHandler("airport", () => onDeleteControlTower(payload))
+          }
           {...selectedTower}
         />
       )}
       {selectedStation && (
         <EditStation
           onSubmit={onUpdateStation}
-          onDelete={onDeleteStation}
+          onDelete={(payload) =>
+            deleteHandler("station", () => onDeleteStation(payload))
+          }
           {...selectedStation}
         />
       )}
       {selectedConnection && (
         <EditArrow
-          onDelete={onDeleteArrow}
+          onDelete={(payload) =>
+            deleteHandler("arrow", () => onDeleteArrow(payload))
+          }
           {...selectedConnection}
         />
       )}
@@ -68,7 +84,8 @@ const EditControls = ({
       <button className="nav-btn" onClick={() => history.push("/")}>
         go back to real time airport ➧
       </button>
-    </div> //TODO Add popup "are you sure?" window
+      {verification}
+    </div>
   );
 };
 

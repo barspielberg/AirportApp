@@ -49,7 +49,7 @@ const EditArrow = ({
   let content = (
     <button className="btn-delete" onClick={onDeleteHandler}>
       Delete this connection ❌
-    </button>//TODO Add "are you sure?"
+    </button>
   );
   if (isAddNew) {
     content = (

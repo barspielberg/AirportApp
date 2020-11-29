@@ -11,7 +11,7 @@ import mainReducer from "./redux/reducers/mainReducer";
 
 import reportWebVitals from "./reportWebVitals";
 
-Axios.defaults.baseURL = "http://localhost:52961/api/Airport/";//TODO Add interceptor for catching errors
+Axios.defaults.baseURL = "http://localhost:52961/api/Airport/";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&

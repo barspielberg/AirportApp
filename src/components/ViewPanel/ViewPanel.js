@@ -27,7 +27,7 @@ const ViewPanel = ({ towerId, selectedStation, history }) => {
       <NewFlights />
       {selectedStation && <StationLogs selectedStation={selectedStation} />}
       <Clock />
-      <button className="nav-btn" onClick={() => history.push("/edit")}>
+      <button className="nav-btn" onClick={() => history.push("/edit")} style={{color:"white"}}>
         edit ➧
       </button>
     </div>

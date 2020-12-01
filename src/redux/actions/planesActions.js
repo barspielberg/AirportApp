@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { setError } from "./connectionActions";
 
 export const INIT_PLANES = "INIT_PLANES";
 export const PLANE_SENDED = "PLANE_SENDED";
@@ -8,7 +9,7 @@ export const ADD_FUTURE_FLIGHT = "ADD_FUTURE_FLIGHT";
 export const getActiveFlightsForControlTower = (towerId) => (dispatch) => {
   Axios.get("ActiveFlightsForControlTower/" + towerId)
     .then((res) => dispatch(initPlanes(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const getUnfulfilledFlightsForControlTower = (towerId) => (dispatch) => {
@@ -20,7 +21,7 @@ export const getUnfulfilledFlightsForControlTower = (towerId) => (dispatch) => {
       });
       dispatch(setFutureFlights(mapedFlights));
     })
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const initPlanes = (planes) => ({

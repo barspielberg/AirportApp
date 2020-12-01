@@ -12,6 +12,7 @@ const SignalRConnection = ({ connect, connected }) => {
 
   useEffect(() => {
     if (connected) setLoading(false);
+    else setLoading(true)
   }, [connected]);
 
   let content = (

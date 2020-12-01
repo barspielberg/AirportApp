@@ -3,13 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 import { connect } from "react-redux";
 import { clearSlelectedStation } from "../../../redux/actions/editActions";
+import { setError } from "../../../redux/actions/connectionActions";
 import StationLog from "./StationLog/StationLog";
 
 const getStationLogs = (stationId) => {
   return Axios.get("StationLogs/" + stationId);
 };
 
-const StationLogs = ({ selectedStation, clearSelection }) => {
+const StationLogs = ({ selectedStation, clearSelection, setNetError }) => {
   const panelRef = useRef();
   const [logs, setLogs] = useState([]);
 
@@ -17,9 +18,9 @@ const StationLogs = ({ selectedStation, clearSelection }) => {
     if (selectedStation) {
       getStationLogs(selectedStation.id)
         .then((res) => setLogs(res.data))
-        .catch(console.log);
+        .catch((err) => setNetError(err.message));
     } else setLogs([]);
-  }, [setLogs, selectedStation]);
+  }, [setLogs, selectedStation, setNetError]);
 
   const onDragHandler = (event, obj) => {
     localStorage.setItem(
@@ -72,5 +73,6 @@ const StationLogs = ({ selectedStation, clearSelection }) => {
 };
 const mapDispatchToProps = (dispatch) => ({
   clearSelection: () => dispatch(clearSlelectedStation()),
+  setNetError: (error) => dispatch(setError(error)),
 });
 export default connect(null, mapDispatchToProps)(StationLogs);

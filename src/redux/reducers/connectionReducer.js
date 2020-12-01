@@ -1,6 +1,11 @@
-import { SET_CONNECTED, SET_CONNECTION } from "../actions/connectionActions";
+import {
+  DISMISS_ERROR,
+  SET_CONNECTED,
+  SET_CONNECTION,
+  SET_ERROR,
+} from "../actions/connectionActions";
 
-const initialState = { connection: null, connected: false };
+const initialState = { connection: null, connected: false, error: null };
 
 const connectionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,7 +13,10 @@ const connectionReducer = (state = initialState, action) => {
       return { ...state, connection: action.connection };
     case SET_CONNECTED:
       return { ...state, connected: action.connected };
-
+    case SET_ERROR:
+      return { ...state, error: action.error };
+    case DISMISS_ERROR:
+      return { ...state, error: null };
     default:
       return state;
   }

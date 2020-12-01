@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { setError } from "./connectionActions";
 
 export const INIT_TOWERS = "INIT_TOWERS";
 export const SELECT_TOWER = "SELECT_TOWER";
@@ -9,13 +10,13 @@ export const DELETE_CONTROL_TOWER_SUCCEEDED = "DELETE_CONTROL_TOWER_SUCCEEDED";
 export const getControlTowers = () => (dispatch) => {
   Axios.get("ControlTowers/")
     .then((res) => dispatch(initControlTowers(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const UpdateCntrolTower = (controlTower) => (dispatch) => {
   Axios.put("ControlTower/" + controlTower.id, controlTower)
     .then((res) => dispatch(updateCntrolTowerSucceeded(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const AddNewCntrolTower = (controlTower) => (dispatch) => {
@@ -24,12 +25,12 @@ export const AddNewCntrolTower = (controlTower) => (dispatch) => {
       dispatch(addNewCntrolTowerSucceeded(res.data));
       dispatch(selectTower(res.data.id));
     })
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 export const DeleteCntrolTower = (towerId) => (dispatch) => {
   Axios.delete("ControlTower/" + towerId)
     .then((res) => dispatch(deleteCntrolTowerSucceeded(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const selectTower = (towerId) => ({

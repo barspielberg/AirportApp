@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { setError } from "./connectionActions";
 import { clearSlelectedStation } from "./editActions";
 
 export const INIT_STATIONS = "INIT-STATIONS";
@@ -9,19 +10,19 @@ export const DELETE_STATION_SUCCEEDED = "DELETE_STATION_SUCCEEDED";
 export const getStationsForControlTower = (towerId) => (dispatch) => {
   Axios.get("StationsForControlTower/" + towerId)
     .then((res) => dispatch(initStations(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const UpdateStation = (station) => (dispatch) => {
   Axios.put("Station/" + station.id, station)
     .then((res) => dispatch(updateStationSucceeded(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 export const AddNewStation = (station) => (dispatch) => {
   Axios.post("Station/", station)
     .then((res) => dispatch(addNewStationSucceeded(res.data)))
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 export const DeleteStation = (stationId) => (dispatch) => {
   Axios.delete("station/" + stationId)
@@ -29,7 +30,7 @@ export const DeleteStation = (stationId) => (dispatch) => {
       dispatch(deleteStationSucceeded(res.data));
       dispatch(clearSlelectedStation());
     })
-    .catch(console.log);
+    .catch(err=>dispatch(setError(err.message)));
 };
 
 const initStations = (stations) => ({

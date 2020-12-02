@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportAppWebServer", "AirportAppWebServer\AirportAppWebServer.csproj", "{22F0F3C5-9802-497A-89D8-8A75AC2EC3EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportAppBL", "AirportBL\AirportAppBL.csproj", "{9364EA69-9004-476C-857F-934D6FB59CD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportAppCommon", "AirportAppCommon\AirportAppCommon.csproj", "{2765C2F9-98E4-4877-8CC1-585D661B5449}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportAppDAL", "AirportAppDAL\AirportAppDAL.csproj", "{F2A43878-D8AC-4CC3-8304-AC3F426690DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportAppTest", "AirportAppTest\AirportAppTest.csproj", "{6D759752-EDB6-4F45-B2AA-B6BACEA54CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportAppFlightGenerator", "AirportAppFlightGenerator\AirportAppFlightGenerator.csproj", "{244F87A5-D699-405C-AEE3-E8F24A5517AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22F0F3C5-9802-497A-89D8-8A75AC2EC3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F0F3C5-9802-497A-89D8-8A75AC2EC3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F0F3C5-9802-497A-89D8-8A75AC2EC3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F0F3C5-9802-497A-89D8-8A75AC2EC3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9364EA69-9004-476C-857F-934D6FB59CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9364EA69-9004-476C-857F-934D6FB59CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9364EA69-9004-476C-857F-934D6FB59CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9364EA69-9004-476C-857F-934D6FB59CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2765C2F9-98E4-4877-8CC1-585D661B5449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2765C2F9-98E4-4877-8CC1-585D661B5449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2765C2F9-98E4-4877-8CC1-585D661B5449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2765C2F9-98E4-4877-8CC1-585D661B5449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2A43878-D8AC-4CC3-8304-AC3F426690DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A43878-D8AC-4CC3-8304-AC3F426690DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A43878-D8AC-4CC3-8304-AC3F426690DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A43878-D8AC-4CC3-8304-AC3F426690DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D759752-EDB6-4F45-B2AA-B6BACEA54CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D759752-EDB6-4F45-B2AA-B6BACEA54CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D759752-EDB6-4F45-B2AA-B6BACEA54CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D759752-EDB6-4F45-B2AA-B6BACEA54CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244F87A5-D699-405C-AEE3-E8F24A5517AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244F87A5-D699-405C-AEE3-E8F24A5517AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244F87A5-D699-405C-AEE3-E8F24A5517AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244F87A5-D699-405C-AEE3-E8F24A5517AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B215FC4-71EA-41B4-AD61-AA623326C205}
+	EndGlobalSection
+EndGlobal

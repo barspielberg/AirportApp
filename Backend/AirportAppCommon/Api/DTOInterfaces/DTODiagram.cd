@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IActiveFlightDTO" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IActiveFlightDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IControlTowerDTO" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IControlTowerDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IDTO" Collapsed="true">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IFlightDTO" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAgAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IFlightDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IRelationDTO" Collapsed="true">
+    <Position X="16.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IRelationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirportAppCommon.Api.DTOInterfaces.IStationDTO" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Api\DTOInterfaces\IStationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

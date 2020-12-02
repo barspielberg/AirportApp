@@ -29,6 +29,7 @@ namespace AirportAppBL
                 ToId = e.SendedTo?.Id,
                 Date = DateTime.Now,
                 FlightId = e.PlaneSended.Id
+               ///addd
             });
         }
     }

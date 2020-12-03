@@ -1,0 +1,6 @@
+Backend:
+  - Backend/**/*
+UI:
+  - UI/**/*
+WorkFlows:
+  - .github/**/*

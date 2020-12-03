@@ -15,7 +15,7 @@ namespace AirportAppCommon.Api
 
         IEnumerable<StationLog> GetLogs();
         IEnumerable<StationLog> GetLogs(Guid stationId);
-        Task SaveNewLogAsync(StationLog log);
+        Task<bool> SaveNewLogAsync(StationLog log);
 
         IEnumerable<ControlTower> GetControlTowers();
         Task<ControlTower> SaveNewControlTowerAsync(ControlTower controlTower);

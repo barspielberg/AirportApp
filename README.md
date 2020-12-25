@@ -2,6 +2,8 @@
 
 A e2e project that handles incoming/outgoing flights from control towers.
 
+![display](https://github.com/barspielberg/AirportApp/blob/master/Images/display.gif)
+
 Includes:
   - 👓 Rest API that handles all the logic (in [Asp.Net core](https://github.com/dotnet/aspnetcore)).
   - 🎚 Simulator that generate new flights and send them to the API (in [WPF core](https://github.com/dotnet/wpf)).

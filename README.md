@@ -16,7 +16,7 @@ Includes:
 Clone this repository
   ### Backend
   1. Build the solution using [Visual Studio](https://visualstudio.microsoft.com/downloads/).
-  2. Run the project. 
+  2. Run both `AirportAppWebServer` and `AirportAppFlightGenerator`. 
   ### Frontend
   
   In `/UI/` folder run:

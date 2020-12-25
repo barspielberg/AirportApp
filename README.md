@@ -7,7 +7,8 @@ A e2e project that handles incoming/outgoing flights from control towers.
 Includes:
   - 👓 Rest API that handles all the logic (in [Asp.Net core](https://github.com/dotnet/aspnetcore)).
   - 🎚 Simulator that generate new flights and send them to the API (in [WPF core](https://github.com/dotnet/wpf)).
-  - 🖥 Web app for displaying the movement of the planes and for edit and build new airports (in [React](https://github.com/facebook/react)). 
+  - 🖥 Web app for displaying the movement of the planes and for edit and build new airports (in [React](https://github.com/facebook/react)).
+  - 💾 Database (in [Sqlite](https://github.com/sqlite/sqlite))
 ---
 ## Requirements
   - [.Net 3.1](https://github.com/dotnet/core/tree/master/release-notes/3.1)
